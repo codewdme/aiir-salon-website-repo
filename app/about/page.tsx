@@ -2,7 +2,7 @@ import { AboutHeaderSection } from "../../components/about/about-header";
 import { AboutCommunitySection } from "../../components/about/about-community-section";
 import { AboutCoreValuesSection } from "../../components/about/about-core-values";
 import { AboutWhyAiirSection } from "../../components/about/about-why-aiir";
-
+//finally
 /**
  * About page
  *
