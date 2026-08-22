@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { BLOG_POSTS } from "../../../components/blogs/blogs-data";
@@ -6,6 +7,55 @@ import { BlogDetailHero } from "../../../components/blog-detail/blog-detail-hero
 import { BlogDetailSidebar } from "../../../components/blog-detail/blog-detail-sidebar";
 import { BlogContentBody } from "../../../components/blog-detail/blog-content-body";
 import { OtherBlogsSection } from "../../../components/blog-detail/other-blogs-section";
+
+// UPDATE (per your instruction — add meta tags across every page): no
+// post has a dedicated excerpt field in `blogs-data.ts`, so the
+// description is derived from the post's own real `bodyHtml` (tags
+// stripped, collapsed to plain text, truncated to a clean word boundary
+// under ~155 chars) rather than inventing new copy. OG image reuses the
+// post's own real confirmed featured photo.
+function stripHtml(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function truncate(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${cut.slice(0, lastSpace > 0 ? lastSpace : max).trimEnd()}…`;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const content = BLOG_CONTENT[slug];
+  if (!post || !content) return {};
+
+  const description = truncate(stripHtml(content.bodyHtml), 155);
+
+  return {
+    title: post.title,
+    description,
+    alternates: { canonical: `/blogs/${slug}` },
+    openGraph: {
+      type: "article",
+      url: `/blogs/${slug}`,
+      title: `${post.title} | Aiir Salon`,
+      description,
+      publishedTime: post.date,
+      authors: [content.author],
+      images: [{ url: post.image, alt: post.title }],
+    },
+  };
+}
 
 /**
  * Individual blog post page (`/blogs/[slug]`)

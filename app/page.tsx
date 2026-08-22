@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "../components/header/header";
 import { Testimonial } from "../components/testimonial/testimonial";
 import { HeroSection } from "../components/hero/hero-section";
@@ -5,6 +6,15 @@ import { IntroSection } from "../components/home/intro-section";
 import { AboutSection } from "../components/home/about-section";
 import { ProblemsSection } from "../components/problems/problems-section";
 import { ServicesSection } from "../components/services-home/services-section";
+
+// UPDATE (per your instruction — add meta tags across every page): the
+// Home page intentionally doesn't repeat the title/description here —
+// it already gets the right ones as `app/layout.tsx`'s own `default`
+// title and site-wide description. Only the canonical URL is
+// Home-specific, so that's the only thing set here.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 /**
  * Home page

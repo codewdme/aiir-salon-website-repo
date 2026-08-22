@@ -1,5 +1,27 @@
+import type { Metadata } from "next";
 import { BlogsHero } from "../../components/blogs/blogs-hero";
 import { BlogsSection } from "../../components/blogs/blogs";
+
+// UPDATE (per your instruction — add meta tags across every page): OG
+// image reuses this page's own confirmed hero background photo (see
+// blogs-hero.tsx).
+const BLOGS_TITLE = "Journal";
+const BLOGS_DESCRIPTION =
+  "Stories, insights and expert tips from Aiir Salon — read our latest articles on hair, beauty, nail care and grooming.";
+const BLOGS_IMAGE =
+  "https://framerusercontent.com/images/EGgrVcRVQLMdAPTkAFN1rteKM.png";
+
+export const metadata: Metadata = {
+  title: BLOGS_TITLE,
+  description: BLOGS_DESCRIPTION,
+  alternates: { canonical: "/blogs" },
+  openGraph: {
+    url: "/blogs",
+    title: `${BLOGS_TITLE} | Aiir Salon`,
+    description: BLOGS_DESCRIPTION,
+    images: [{ url: BLOGS_IMAGE, alt: "Aiir Salon" }],
+  },
+};
 
 /**
  * Blogs (Journal) listing page — `/blogs`

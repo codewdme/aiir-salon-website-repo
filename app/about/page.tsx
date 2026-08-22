@@ -1,8 +1,31 @@
+import type { Metadata } from "next";
 import { AboutHeaderSection } from "../../components/about/about-header";
 import { AboutCommunitySection } from "../../components/about/about-community-section";
 import { AboutCoreValuesSection } from "../../components/about/about-core-values";
 import { AboutWhyAiirSection } from "../../components/about/about-why-aiir";
-//finally
+
+// UPDATE (per your instruction — add meta tags across every page):
+// description text draws on this page's own real confirmed content
+// ("A Community of Creatives. United by Beauty.", the OUR STORY hero) —
+// the OG image reuses this page's own confirmed hero background photo.
+const ABOUT_TITLE = "About Us";
+const ABOUT_DESCRIPTION =
+  "Discover the story, community and core values behind Aiir Salon — a luxury hair, beauty, nails and grooming destination in East Patel Nagar, New Delhi.";
+const ABOUT_IMAGE =
+  "https://framerusercontent.com/images/0EsRyw6O5VIlp7GbHxMmVlipXrE.png";
+
+export const metadata: Metadata = {
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: `${ABOUT_TITLE} | Aiir Salon`,
+    description: ABOUT_DESCRIPTION,
+    images: [{ url: ABOUT_IMAGE, alt: "Aiir Salon" }],
+  },
+};
+
 /**
  * About page
  *

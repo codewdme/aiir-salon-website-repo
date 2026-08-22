@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Header } from "../../components/header/header";
 import { ContactForm } from "../../components/contact/contact-form";
@@ -57,6 +58,25 @@ const HERO_IMAGE =
 
 const CONTACT_IMAGE =
   "https://framerusercontent.com/images/5TmknRa6DXD21ZZRLc7AGPzuKRg.jpg";
+
+// UPDATE (per your instruction — add meta tags across every page): reuses
+// this page's own real confirmed hero photo (`HERO_IMAGE`, defined
+// above) as the Open Graph image rather than duplicating a new one.
+const CONTACT_TITLE = "Contact Us";
+const CONTACT_DESCRIPTION =
+  "Get in touch with Aiir Salon in East Patel Nagar, New Delhi. Book an appointment, ask a question, or find our contact details.";
+
+export const metadata: Metadata = {
+  title: CONTACT_TITLE,
+  description: CONTACT_DESCRIPTION,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    title: `${CONTACT_TITLE} | Aiir Salon`,
+    description: CONTACT_DESCRIPTION,
+    images: [{ url: HERO_IMAGE, alt: "Aiir Salon" }],
+  },
+};
 
 export default function ContactPage() {
   return (

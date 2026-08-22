@@ -1,8 +1,30 @@
 
+import type { Metadata } from "next";
 import { Button } from "@/components/buttons/button";
 import { ServicesHeroSection } from "../../components/services-page/services-hero";
 import { SERVICES_HOME } from "@/components/services-home/services-data";
 import Image from "next/image";
+
+// UPDATE (per your instruction — add meta tags across every page): OG
+// image reuses this page's own confirmed hero background photo (see
+// services-hero.tsx).
+const SERVICES_TITLE = "Services";
+const SERVICES_DESCRIPTION =
+  "Explore Aiir Salon's full range of hair, beauty, nail and grooming services in New Delhi — from pedicures and manicures to bridal makeup and hair spa treatments.";
+const SERVICES_IMAGE =
+  "https://framerusercontent.com/images/zHvepJGODMimd2nuFZTOOk6lE.png";
+
+export const metadata: Metadata = {
+  title: SERVICES_TITLE,
+  description: SERVICES_DESCRIPTION,
+  alternates: { canonical: "/services" },
+  openGraph: {
+    url: "/services",
+    title: `${SERVICES_TITLE} | Aiir Salon`,
+    description: SERVICES_DESCRIPTION,
+    images: [{ url: SERVICES_IMAGE, alt: "Aiir Salon" }],
+  },
+};
 
 
 /**
