@@ -16,11 +16,33 @@ import { Resend } from "resend";
  * instruction. Note: the "from" address's domain (digitalfry.in) must be
  * verified in the Resend dashboard for sending to actually succeed --
  * that's a Resend account setup step outside this codebase.
+ *
+ * UPDATE (found via live verification -- an actual submit crashed with an
+ * empty 500 instead of a JSON error): the Resend client was originally
+ * constructed at module scope (`new Resend(...)`, same as the Booleans
+ * Cricket project's route). The Resend SDK throws synchronously in its
+ * constructor when the API key is missing/undefined -- and since no
+ * `.env` exists in this repo yet, that's exactly what happened. A
+ * module-scope throw happens during route compilation, outside this
+ * file's own try/catch, so Next.js can't format it as a normal JSON
+ * error response -- the request just gets a blank 500. Moved the client
+ * construction inside the handler's try block so a missing/invalid key
+ * now returns the same clean `{ error }` JSON shape as every other
+ * failure case here, instead of crashing the module.
  */
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    const apiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("Contact form error: NEXT_PUBLIC_RESEND_API_KEY is not set.");
+      return NextResponse.json(
+        { error: "Email sending isn't configured yet. Please try again later." },
+        { status: 500 }
+      );
+    }
+    const resend = new Resend(apiKey);
+
     const { firstName, lastName, email, phone, service, message } =
       await request.json();
 
@@ -46,7 +68,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: "Aiir Salon <info@digitalfry.in>",
-      to: "support@aiir.salon",
+      to: "hello@aiir.salon",
       replyTo: email,
       subject: `New contact inquiry from ${firstName} ${lastName}`,
       text: `New inquiry from the Aiir Salon contact form.\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${message}`,
