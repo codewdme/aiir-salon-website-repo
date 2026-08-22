@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { FormButton } from "../buttons/form-button";
 
 /**
@@ -48,6 +48,15 @@ import { FormButton } from "../buttons/form-button";
  *   API call/action once one exists; the surrounding UI won't need to
  *   change.
  *
+ * UPDATE (per your instruction — Resend wired up, send from
+ * info@digitalfry.in to hello@aiir.salon via NEXT_PUBLIC_RESEND_API_KEY):
+ * `handleSubmit` now actually posts JSON to `app/api/contact/route.ts`
+ * (same pattern already used for the Booleans Cricket project's contact
+ * form) instead of the placeholder timeout. On failure, the API's error
+ * message is passed into `FormButton`'s `errorLabel` so the real reason
+ * shows instead of a generic label; the form only resets on a confirmed
+ * success.
+ *
  * UPDATE (bug fixes, reported after comparing against the live Framer
  * preview — not from Framer node data, since it never exposed the actual
  * inputs):
@@ -91,17 +100,43 @@ export function ContactForm() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      email: data.get("email"),
+      phone: data.get("phone"),
+      service: data.get("service"),
+      message: data.get("message"),
+    };
+
     setStatus("loading");
+    setErrorMessage("");
+
     try {
-      // Placeholder — no real endpoint exists yet in Framer's data.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Something went wrong.");
+      }
+
       setStatus("success");
-      event.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (err) {
       setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong."
+      );
     }
   };
 
@@ -194,6 +229,7 @@ export function ContactForm() {
         <FormButton
           type="submit"
           status={status}
+          errorLabel={errorMessage || "Something went wrong"}
           className="h-[50px] w-full"
         />
       </form>
