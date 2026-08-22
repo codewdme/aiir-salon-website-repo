@@ -72,7 +72,7 @@ const NAV_LINKS = [
 
 const CONTACT_LINKS = [
   { label: "+91 97113 19369", href: "tel:+919711319369" },
-  { label: "hello@aiir.salon", href: "/mailto:hello@aiir.salon" },
+  { label: "support@aiir.salon", href: "/mailto:support@aiir.salon" },
 ];
 
 const SOCIAL_LINKS = [

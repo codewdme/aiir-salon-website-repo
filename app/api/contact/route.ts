@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: "Aiir Salon <info@digitalfry.in>",
-      to: "hello@aiir.salon",
+      to: "support@aiir.salon",
       replyTo: email,
       subject: `New contact inquiry from ${firstName} ${lastName}`,
       text: `New inquiry from the Aiir Salon contact form.\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${message}`,
