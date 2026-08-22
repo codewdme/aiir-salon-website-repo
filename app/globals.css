@@ -1,26 +1,358 @@
 @import "tailwindcss";
 
+/* =========================================================
+   Design tokens imported from Framer project "aiir-salon-claude"
+   Source: Framer ColorStyles / TextStyles (getProjectXml)
+
+   NOTE on duplicate color names in Framer:
+   The Framer file had duplicate style names with different values for
+   "Secondary BG", "Light green", "Primary text color", and "Brown light".
+   Per user decision, the LATER-listed value was kept for each:
+     - Light green         -> rgb(203, 209, 144)   (was also rgb(179, 167, 161))
+     - Primary text color  -> rgb(83, 68, 62)       (was also rgb(65, 19, 19))
+     - Brown light         -> rgba(83, 68, 62, 0.6) (was also rgba(138, 109, 80, 0.75))
+
+   UPDATE (bug fix — Contact form didn't match the live Framer preview):
+   "Secondary BG" was also one of the duplicated names, and the LATER-listed
+   cream value (rgb(250, 246, 237)) was picked here — but it's nearly
+   identical to the page background and "White"/"Primary BG" tokens, so any
+   card using it (the Contact form's card) rendered with no visible fill at
+   all. Your fresh Framer screenshot of this exact card shows a clearly tan
+   background, which matches the FIRST-listed value instead. Flipped back to
+   that one: Secondary BG -> rgb(192, 170, 147) (was rgb(250, 246, 237)).
+   Only affects the 3 Contact-page components that use `bg-secondary-bg` /
+   `border-secondary-text` — nothing else in the project references it yet.
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors — from Framer ColorStyles */
+  --white: rgb(252, 247, 237);
+  --white-100: rgb(255, 255, 255);
+  --black: rgb(65, 19, 19); 
+  --black-100: rgb(0, 0, 0);
+  --green-accent: rgb(192, 170, 147);
+  --primary-color: rgb(138, 109, 80);
+  --secondary-text-color: rgb(252, 247, 237);
+  --primary-bg: rgb(252, 247, 237);
+  --primary-text-color: rgb(83, 68, 62);
+  --secondary-bg: rgb(192, 170, 147);
+  --light-green: rgb(203, 209, 144);
+  --brown-light: rgba(83, 68, 62, 0.6);
+  --bg: rgb(246, 239, 229);
+  --brown: rgb(72, 18, 14);
+  --red: rgb(184, 32, 32);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-italiana: var(--font-italiana);
+  --font-montserrat: var(--font-montserrat);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-white: var(--white);
+  --color-white-100: var(--white-100);
+  --color-black: var(--black);
+  --color-black-100: var(--black-100);
+  --color-green-accent: var(--green-accent);
+  --color-primary: var(--primary-color);
+  --color-secondary-text: var(--secondary-text-color);
+  --color-primary-bg: var(--primary-bg);
+  --color-primary-text: var(--primary-text-color);
+  --color-secondary-bg: var(--secondary-bg);
+  --color-light-green: var(--light-green);
+  --color-brown-light: var(--brown-light);
+  --color-bg: var(--bg);
+  --color-brown: var(--brown);
+  --color-red: var(--red);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--primary-text-color);
+}
+
+/* =========================================================
+   Text styles — from Framer TextStyles
+   ========================================================= */
+
+/* Headings/H1 sans */
+@utility text-h1-sans {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 116px;
+  line-height: 1em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H1 serif */
+@utility text-h1-serif {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 120px;
+  line-height: 1em;
+  letter-spacing: -0.01em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H2 sans */
+@utility text-h2-sans {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H2 serif */
+@utility text-h2-serif {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.4em;
+  letter-spacing: -0.01em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H3
+   UPDATE: added the phone ("S") breakpoint size from Framer's own
+   Breakpoints panel for this style, confirmed by your screenshot —
+   letter-spacing (-0.05em) and line-height (1.3em) are already identical
+   between the S and default (desktop) breakpoints, so only font-size
+   actually changes: 36px desktop -> 24px at phone widths (matching the
+   existing `(max-width: 767px)` phone cutoff already used elsewhere in
+   this project, e.g. nav-bar.tsx's scroll-lock logic). */
+@utility text-h3 {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.3em;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: none;
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
+}
+
+/* Headings/H4 Italics */
+@utility text-h4-italic {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H4 */
+@utility text-h4 {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H4 bold */
+@utility text-h4-bold {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H5 */
+@utility text-h5 {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Headings/H6 */
+@utility text-h6 {
+  font-family: var(--font-italiana);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4em;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Paragraph/Blog content */
+@utility text-body-blog {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6em;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Paragraph/Body 14 */
+@utility text-body-14 {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6em;
+  letter-spacing: 0px;
+  text-align: center;
+  text-transform: none;
+}
+
+/* Paragraph/Body 16 compact */
+@utility text-body-16-compact {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4em;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Paragraph/Body 16 */
+@utility text-body-16 {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6em;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Paragraph/Body 18 */
+@utility text-body-18 {
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6em;
+  letter-spacing: 0px;
+  text-align: left;
+  text-transform: none;
+}
+
+/* Paragraph/Eyebrow text
+   NOTE: originally "/Paragraph/Eyebrow text" -> Instrument Sans, per
+   Framer's data. Per your instruction ("use only montserrat everywhere
+   for now and the other font for heading"), switched to Montserrat —
+   the project now uses just 2 font families: Italiana for headings,
+   Montserrat for everything else. Instrument Sans is no longer loaded
+   (see layout.tsx). */
+@utility text-eyebrow {
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6em;
+  letter-spacing: 0px;
+  text-align: left;
+  text-transform: none;
+}
+
+/* =========================================================
+   Hero Ticker marquee (phone only)
+
+   Not from Framer's node data — animation/interaction behavior is never
+   exposed by Framer's XML API (same limitation hit repeatedly elsewhere
+   in this project: gradients, masks, scroll effects). You confirmed
+   directly that the Hero's "Ticker" row (Hair/Beauty/Nails/Grooming)
+   auto-scrolls as a continuously looping marquee on phone, so this is
+   built from that description rather than inferred from data.
+
+   Used by hero-section.tsx: the ticker content is duplicated once in
+   the DOM so a `translateX` of exactly -50% moves the track by one full
+   set's width, landing back on an identical-looking position — the
+   standard seamless-loop marquee technique. `linear` keeps the speed
+   constant with no easing pause at the loop point. Desktop/tablet keep
+   the original static, non-animated wrapped row — this utility is only
+   ever applied via a `md:hidden` wrapper.
+   ========================================================= */
+@utility animate-marquee {
+  animation: marquee-scroll 16s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================
+   Scroll reveal (fade + slide-in on first appearance)
+
+   Per your instruction ("without changing any design structure...
+   simply add a smooth fade in effect for every text and buttons, and
+   some components... which only fade slide in once they appear in
+   viewport") — not from Framer data, an explicit request. Implemented
+   as a plain className + a single shared IntersectionObserver
+   (`components/scroll-reveal/reveal-observer.tsx`, mounted once in
+   `app/layout.tsx`) rather than a wrapper component, specifically so
+   applying it never adds a new DOM node around existing elements — it
+   only adds the `reveal` class (plus optional `reveal-delay-*`) to
+   elements that already exist, so no layout/structure changes anywhere
+   it's used.
+
+   `.reveal` starts invisible + offset down 24px; the observer adds
+   `.is-revealed` the first time the element crosses into the viewport
+   (10% visible), then stops observing it — matching "only... once they
+   appear," not a repeating re-trigger on every scroll past. Respects
+   `prefers-reduced-motion` by skipping the animation and showing
+   content immediately.
+   ========================================================= */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional stagger helpers for groups of siblings (e.g. a row of cards)
+   — apply alongside `reveal` to offset when each element's transition
+   starts, so a group doesn't all fade in as one flat block. */
+@utility reveal-delay-1 {
+  transition-delay: 0.08s;
+}
+@utility reveal-delay-2 {
+  transition-delay: 0.16s;
+}
+@utility reveal-delay-3 {
+  transition-delay: 0.24s;
+}
+@utility reveal-delay-4 {
+  transition-delay: 0.32s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
