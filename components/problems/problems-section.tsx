@@ -133,10 +133,10 @@ function ProblemCard(card: ProblemCardData) {
 
   return (
     <div
-      className="flex h-[250px] w-full flex-col items-center justify-center rounded-[14px] p-6"
+      className="flex h-[250px] w-full flex-col items-center justify-center rounded-[14px] p-6 lg:p-16"
       style={{ backgroundColor: card.bgColor }}
     >
-      <p className="text-body-16-compact text-primary-text text-center px-6">{card.text}</p>
+      <p className="text-body-16-compact text-primary-text text-center ">{card.text}</p>
     </div>
   );
 }
@@ -160,9 +160,9 @@ export function ProblemsSection() {
             ))}
           </div>
 
-          <div className="reveal  reveal-delay-1 bg-primary flex w-full flex-col justify-between gap-6 rounded-[14px] p-6 lg:h-[515px] lg:w-[30%] lg:shrink-0">
+          <div className="min-h-[525px] reveal reveal-delay-1 bg-primary flex w-full flex-col justify-between gap-6 rounded-[14px] p-6 lg:h-full lg:w-[30%] lg:shrink-0">
             <p className="text-h4 text-white">
-              &quot;You deserve to feel as good as you look.&quot;
+              &quot;You deserve to feel as good as you look. Behind every cut and colour at Aiir is a team that treats your time as precious, your trust as earned.&quot;
             </p>
             <div className="flex flex-col items-start gap-2.5">
               <span className="text-h4 text-white">Aiir Salon</span>

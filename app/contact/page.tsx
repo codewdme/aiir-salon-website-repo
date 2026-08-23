@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   title: CONTACT_TITLE,
   description: CONTACT_DESCRIPTION,
   alternates: { canonical: "/contact" },
-  openGraph: {
+  openGraph: {  
     url: "/contact",
     title: `${CONTACT_TITLE} | Aiir Salon`,
     description: CONTACT_DESCRIPTION,

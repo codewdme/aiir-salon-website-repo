@@ -49,14 +49,25 @@ import Image from "next/image";
  *   doesn't expose them) — nudge these if they're slightly off from the
  *   live canvas. Drag-to-scroll wasn't reproduced — flag if that
  *   interaction turns out to matter.
+ *
+ * UPDATE (per your instruction — use the 6 real client photos you
+ * uploaded from `draft/Aiir Web img` instead of the 5 Framer CDN
+ * placeholders): copied those 6 files into `public/` (identified by
+ * exact byte-size match against your upload, since the folder's
+ * filenames — "Aiir salon.jpg", "Aiir salon2.jpg", etc. — don't
+ * correspond to the images 1:1 by name) as `aiir-client-portrait-*.jpg`,
+ * and swapped them in here as local root-relative paths. Slide count
+ * changed from 5 to 6; nothing else about the component (timing,
+ * coverflow styling, layout) was touched.
  */
 
 const SLIDES = [
-  "https://framerusercontent.com/images/6dvWtot2cR45sI2O7ZvHPszhnA.jpg",
-  "https://framerusercontent.com/images/KbBFG4D4ZcsNIK0ejVVp8AISHBA.jpg",
-  "https://framerusercontent.com/images/R6zJQHnKKOMc6kABYXVrRuSIZNY.jpg",
-  "https://framerusercontent.com/images/tcT5ll2jca5io3cEJEs0yFIK6pQ.jpg",
-  "https://framerusercontent.com/images/aiJy6irZIPis9ljpzZircTXnU.jpg",
+  "/aiir-client-portrait-bag.jpg",
+  "/aiir-client-portrait-lehenga.jpg",
+  "/aiir-client-portrait-black-dress.jpg",
+  "/aiir-client-portrait-hair-flip.jpg",
+  "/aiir-client-portrait-choker.jpg",
+  "/aiir-client-portrait-long-hair.jpg",
 ];
 
 const ITEM_WIDTH = 345;

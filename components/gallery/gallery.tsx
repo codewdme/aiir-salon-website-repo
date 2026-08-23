@@ -77,26 +77,69 @@ import { ImageScrollEffect } from "./image-scroll-effect";
  * (see its own UPDATE 2) instead of a hard-locked 9, so all 17 real
  * photos are passed in below rather than the old 9 Unsplash
  * placeholders.
+ *
+ * UPDATE 2 (per your instruction — pick more images from
+ * `draft/Aiir Web img`, rename thoroughly, and use them here): of the
+ * folder's remaining files (beyond the 6 already used in the Home
+ * slideshow), most were near-duplicate frames of the same 2 shots
+ * (e.g. DSC00020 vs. DSC00019; DSC00054/55/56 vs. DSC00053 — same pose,
+ * same take) or an exact repeat of a photo already in the slideshow
+ * (IMG_0340.JPG.jpeg); one file (IMG_9165.HEIC) couldn't be previewed or
+ * converted in this environment (no HEIC decoder available), so it was
+ * left out rather than guessed at. That left 4 genuinely new, distinct
+ * photos, added here per your choice to combine them with the existing
+ * 17 rather than replace them (21 total).
+ *
+ * Per your instruction to rename thoroughly, all 21 files went by one
+ * consistent `gallery-section-image-N.jpg` scheme instead of the mixed
+ * `aiir-*.jpg` names — copied (not moved) into `public/` under these new
+ * names. Copies, not renames-in-place, because 3 of the original 17
+ * files (`aiir-reception-desk-1.jpg`, `aiir-styling-station-hair-
+ * service.jpg`, `aiir-lounge-sofa.jpg`) are also used by
+ * `problems-section.tsx` — renaming those originals would have broken
+ * that unrelated page, which is out of scope for this task. Those 21
+ * `gallery-section-image-*.jpg` files are still sitting in `public/`
+ * (unused now, not deleted — this environment can't delete files on
+ * your device) alongside the original 17 `aiir-*.jpg` files.
+ *
+ * UPDATE 3 (per your instruction — "change the images of the gallery
+ * section with the people images we used in the intro section"): swapped
+ * to the same 6 real client-portrait photos already used by the Home
+ * page's `Slideshow` (`components/home/slideshow.tsx`'s `SLIDES` array,
+ * `/aiir-client-portrait-*.jpg`) instead of the salon-interior mosaic.
+ * Reused the exact same file paths already in `public/` rather than
+ * copying under new names, since both components now intentionally point
+ * at the same photo set.
+ *
+ * UPDATE 4 (per your instruction — "apart from the images used now, fill
+ * the remaining spots with other images"): the grid math sizes itself to
+ * however many images it's given (see image-scroll-effect.tsx's UPDATE
+ * 2), so the 6 portraits alone rendered a sparse 2-row mosaic. First pass
+ * appended all 21 `gallery-section-image-*.jpg` salon photos after the 6
+ * portraits (27 total) — but that made portraits only ~22% of the grid,
+ * which you flagged ("i want the people images as the main focus"). nothing
+ * had actually been removed, the ratio was just wrong.
+ *
+ * UPDATE 5 (per your clarification — portraits should stay the clear
+ * majority, salon photos as accents only, no repeats): kept the same 6
+ * portraits and cut the salon accents down to 4 (from the 21 available),
+ * picked spread across the set rather than consecutive — `gallery-
+ * section-image-1/6/11/16.jpg` — so the accent photos vary rather than
+ * all coming from the same original run. 10 images total: 6 portraits
+ * (60%) + 4 salon accents (40%).
  */
 
 const GALLERY_IMAGES = [
-  "/aiir-client-relax-aiir-sign.jpg",
-  "/aiir-facial-steam-towel.jpg",
-  "/aiir-facial-treatment-closeup.jpg",
-  "/aiir-hairwash-portrait-1.jpg",
-  "/aiir-hairwash-portrait-2.jpg",
-  "/aiir-kids-haircut.jpg",
-  "/aiir-lounge-sofa.jpg",
-  "/aiir-nailart-hands-closeup.jpg",
-  "/aiir-pedicure-lounge-aiir-sign.jpg",
-  "/aiir-reception-desk-1.jpg",
-  "/aiir-reception-desk-2.jpg",
-  "/aiir-styling-mirrors-closeup.jpg",
-  "/aiir-styling-row-arches-1.jpg",
-  "/aiir-styling-row-arches-2.jpg",
-  "/aiir-styling-row-arches-3.jpg",
-  "/aiir-styling-row-wide.jpg",
-  "/aiir-styling-station-hair-service.jpg",
+  "/aiir-client-portrait-bag.jpg",
+  "/aiir-client-portrait-lehenga.jpg",
+  "/aiir-client-portrait-black-dress.jpg",
+  "/aiir-client-portrait-hair-flip.jpg",
+  "/aiir-client-portrait-choker.jpg",
+  "/aiir-client-portrait-long-hair.jpg",
+  "/gallery-section-image-1.jpg",
+  "/gallery-section-image-6.jpg",
+  "/gallery-section-image-11.jpg",
+  "/gallery-section-image-16.jpg",
 ];
 
 export function Gallery() {

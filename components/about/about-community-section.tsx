@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "../buttons/button";
 
 /**
  * AboutCommunitySection
@@ -93,15 +94,24 @@ export function AboutCommunitySection() {
                 remembering.
               </p>
             </div>
-          </div>
+          
+          <Button
+                href="/blogs"
+                default={{ text: "rgb(255, 255, 255)", bg: "rgb(138, 109, 80)" }}
+                hover={{ text: "rgb(255, 255, 255)", bg: "rgb(65, 19, 19)" }}
+                className="w-[200px]"
+              >
+                Read More...
+              </Button>
+              </div>
 
-          <div className="bg-secondary-text flex w-full flex-col items-stretch gap-6 rounded-[14px] p-6 sm:flex-row sm:items-center sm:gap-5">
+          {/* <div className="bg-secondary-text flex w-full flex-col items-stretch gap-6 rounded-[14px] p-6 sm:flex-row sm:items-center sm:gap-5">
             <StatColumn value="10+" label="YEARS OF EXPERIENCE" />
             <StatDivider />
             <StatColumn value="400+" label="SATISFIED CLIENTS" />
             <StatDivider />
             <StatColumn value="8+" label="SERVICES OFFERED" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
