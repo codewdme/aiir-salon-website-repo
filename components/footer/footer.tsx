@@ -165,8 +165,8 @@ export function Footer() {
       </div>
 
       {/* Copyright row */}
-      <div className="relative z-10 mt-16 flex flex-col items-center gap-3 md:mt-20">
-        <div className="flex w-full items-center  gap-3 opacity-60">
+      <div className="relative z-10 mt-8 flex flex-col items-center gap-3 ">
+        <div className="flex flex-col lg:flex-row w-full items-center  gap-3 opacity-60">
           <p className="text-body-14 text-white flex-1 text-left">
             © 2026 Aiir Salon. All rights reserved.
           </p>
@@ -182,7 +182,7 @@ export function Footer() {
       </div>
 
       {/* Decorative watermark wordmark */}
-      <div
+      {/* <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-5 left-1/2 w-[220px] -translate-x-1/2 opacity-[0.21] md:w-[360px] lg:w-[473px]"
       >
@@ -193,7 +193,7 @@ export function Footer() {
           height={Math.round(473 * LOGO_RATIO)}
           className="h-auto w-full"
         />
-      </div>
+      </div> */}
     </footer>
   );
 }
