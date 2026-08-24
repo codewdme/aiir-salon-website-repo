@@ -4,6 +4,8 @@ import { AboutCommunitySection } from "../../components/about/about-community-se
 import { AboutCoreValuesSection } from "../../components/about/about-core-values";
 import { AboutWhyAiirSection } from "../../components/about/about-why-aiir";
 
+//fixed footer
+
 // UPDATE (per your instruction — add meta tags across every page):
 // description text draws on this page's own real confirmed content
 // ("A Community of Creatives. United by Beauty.", the OUR STORY hero) —
