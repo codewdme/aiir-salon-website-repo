@@ -14,7 +14,7 @@ const ABOUT_TITLE = "About Us";
 const ABOUT_DESCRIPTION =
   "Discover the story, community and core values behind Aiir Salon — a luxury hair, beauty, nails and grooming destination in East Patel Nagar, New Delhi.";
 const ABOUT_IMAGE =
-  "https://framerusercontent.com/images/0EsRyw6O5VIlp7GbHxMmVlipXrE.png";
+  "/about-page-hero-image.jpg";
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
