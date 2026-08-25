@@ -38,7 +38,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
     includedShort: splitBullets(
       "• Nail cleaning & shaping \n• Cuticle care \n• Foot soak \n• Scrubbing & dead-skin removal \n• 4 more services....",
     ),
-    image: "https://framerusercontent.com/images/EB4MmIU6gvxBPRbXEMpgnR8Tk.png",
+    image: "/services/pedicure.jpg",
   },
   {
     slug: "manicure",
@@ -50,7 +50,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
       "• Nail cleaning & shaping \n• Cuticle care \n• Hand soak \n• Gentle exfoliation \n• 4 more services....",
     ),
     image:
-      "https://framerusercontent.com/images/5F1OUAkHIJ4yxweazS2IKZYoAeY.png",
+      "/services/manicure.jpg",
   },
   {
     slug: "facial",
@@ -62,7 +62,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
       "• Deep cleansing \n• Gentle exfoliation \n• Blackhead & whitehead care \n• Face massage \n• 4 more services....",
     ),
     image:
-      "https://framerusercontent.com/images/O6wZYp0xU2KiCx08zxNouZK4ja8.png",
+      "/services/facial.jpg",
   },
   {
     slug: "cleanup",
@@ -74,7 +74,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
       "• Face cleansing \n• Gentle exfoliation \n• Steam \n• Blackhead & whitehead removal \n• 4 more services....",
     ),
     image:
-      "https://framerusercontent.com/images/o6APikaztyNbRN4iYpOurRVKJo8.jpg",
+      "/services/clean-up.jpg",
   },
   {
     slug: "nail-art",
@@ -85,7 +85,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
     includedShort: splitBullets(
       "• Basic Nail Art \n• Gel Nail Art \n• Custom Nail Designs \n• Floral & Minimal Nail Art \n• 6 more services....",
     ),
-    image: "https://framerusercontent.com/images/s2Y76d9EjZbUx0BPoNS3uFZp6M.jpg",
+    image: "/services/nail-art.jpg",
   },
   {
     slug: "bridal-makeup",
@@ -97,7 +97,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
       "• HD/Airbrush Makeup \n• Skin Preparation \n• Eye Makeup \n• Contouring & Highlighting \n• 4 more services....",
     ),
     image:
-      "https://framerusercontent.com/images/tqnaSvPnmMtwOqjAqQ3TbuXL0Y.jpg",
+      "/services/bridal-makeup.jpg",
   },
   {
     slug: "haircut-styling",
@@ -109,7 +109,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
       "• Hair consultation \n• Hair wash \n• Professional haircut \n• Blow-dry & styling \n• 2 more services....",
     ),
     image:
-      "https://framerusercontent.com/images/wu2KAHSM8sy0yRYTOL5g6nPYujY.jpg",
+      "/services/haircut-styling.jpg",
   },
   {
     slug: "hair-spa",
@@ -120,7 +120,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
     includedShort: splitBullets(
       "• Hair & scalp cleansing \n• Nourishing hair treatment \n• Scalp massage \n• Steam therapy \n• 3 more services....",
     ),
-    image: "https://framerusercontent.com/images/mNpxbXIJSfO8W13qkouZJy3zmI.png",
+    image: "/services/hair-spa.jpg",
   },
   {
     slug: "hair-colour",
@@ -131,7 +131,7 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
     includedShort: splitBullets(
       "• Colour consultation \n• Shade selection \n• Hair sectioning & application \n• Professional colour processing \n• 3 more services....",
     ),
-    image: "https://framerusercontent.com/images/ZgsQWFz8fHoSinVNXBqxmUGDE.png",
+    image: "/services/hair-colour.jpg",
   },
   {
     slug: "hair-treatment",
@@ -142,6 +142,6 @@ export const SERVICES_HOME: (ServiceHome & { image: string })[] = [
     includedShort: splitBullets(
       "• Hair & scalp analysis \n• Deep cleansing \n• Treatment application \n• Scalp massage \n• 4 more services....",
     ),
-    image: "https://framerusercontent.com/images/HnGSUrSqAQHxit2pwElRFxHmU.png",
+    image: "/services/hair-treatment.jpg",
   },
 ];
