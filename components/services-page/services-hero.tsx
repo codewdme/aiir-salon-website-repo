@@ -26,7 +26,7 @@ import { Header } from "../header/header";
  */
 
 const HERO_IMAGE =
-  "https://framerusercontent.com/images/zHvepJGODMimd2nuFZTOOk6lE.png";
+  "/our-services-page-hero-image.jpg";
 
 export function ServicesHeroSection() {
   return (

@@ -34,7 +34,7 @@ import { Header } from "../header/header";
  */
 
 const HERO_IMAGE =
-  "https://framerusercontent.com/images/EGgrVcRVQLMdAPTkAFN1rteKM.png";
+  "/blogs-page-hero-image.jpg";
 
 export function BlogsHero() {
   return (

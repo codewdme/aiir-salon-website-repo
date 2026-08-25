@@ -12,7 +12,7 @@ const SERVICES_TITLE = "Services";
 const SERVICES_DESCRIPTION =
   "Explore Aiir Salon's full range of hair, beauty, nail and grooming services in New Delhi — from pedicures and manicures to bridal makeup and hair spa treatments.";
 const SERVICES_IMAGE =
-  "https://framerusercontent.com/images/zHvepJGODMimd2nuFZTOOk6lE.png";
+  "/our-services-page-hero-image.jpg";
 
 export const metadata: Metadata = {
   title: SERVICES_TITLE,

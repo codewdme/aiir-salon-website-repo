@@ -9,7 +9,7 @@ const BLOGS_TITLE = "Journal";
 const BLOGS_DESCRIPTION =
   "Stories, insights and expert tips from Aiir Salon — read our latest articles on hair, beauty, nail care and grooming.";
 const BLOGS_IMAGE =
-  "https://framerusercontent.com/images/EGgrVcRVQLMdAPTkAFN1rteKM.png";
+  "/blogs-page-hero-image.jpg";
 
 export const metadata: Metadata = {
   title: BLOGS_TITLE,
