@@ -33,7 +33,7 @@ import { Header } from "../header/header";
  */
 
 const HEADER_IMAGE =
-  "https://framerusercontent.com/images/0EsRyw6O5VIlp7GbHxMmVlipXrE.png";
+  "/about-page-hero-image.jpg";
 
 export function AboutHeaderSection() {
   return (
