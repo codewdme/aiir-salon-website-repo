@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Italiana, Montserrat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { NavBar } from "../components/nav-bar/nav-bar";
 import { FooterReveal } from "../components/footer/footer-reveal";
@@ -37,8 +38,33 @@ const montserrat = Montserrat({
 // base to resolve every page's relative Open Graph/canonical URLs into
 // real absolute ones; if the real domain ends up different, this is the
 // one place to change it and every page updates automatically.
+//
+// UPDATE (per your instruction — set up the favicon, using the reference
+// `layout.tsx` you shared for the `icons` shape): the 7 files you
+// connected from `assets-raw/aiir-salon-favicon` are the standard
+// RealFaviconGenerator output set (favicon.ico, favicon.svg,
+// favicon-96x96.png, apple-touch-icon.png, web-app-manifest-192x192.png,
+// web-app-manifest-512x512.png, site.webmanifest — the manifest's own
+// `name`/`short_name` were already confirmed real, "Aiir Salon"), copied
+// as-is into `public/`. Your reference project only had a light/dark
+// pair of 32x32 PNGs + an SVG + an Apple icon; this set is a superset of
+// that (adds a real `.ico` fallback for older browsers/search engines,
+// a manifest for Android "Add to Home Screen", and larger maskable PNGs)
+// — no light/dark variants were generated for this project, so `icon`
+// only lists the SVG (scales to any size, used by modern browsers) and
+// the 96x96 PNG (a fallback for browsers that don't support SVG
+// favicons), same 2-icon-array shape as your reference otherwise.
 export const metadata: Metadata = {
   metadataBase: new URL("https://aiir.salon"),
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   title: {
     default: "Aiir Salon | Luxury Hair, Beauty, Nails & Grooming in New Delhi",
     template: "%s | Aiir Salon",
@@ -145,6 +171,20 @@ export const metadata: Metadata = {
  * spacer within it) now transparently passes clicks through to the
  * footer beneath. No visual or layout change; confirmed live via
  * `elementFromPoint` on the footer's nav link and social icon.
+ *
+ * UPDATE (per your instruction — install the Google tag, GA4 property
+ * G-5B2J79PQPQ): Google's own snippet is raw `<script>` tags meant to go
+ * "immediately after <head>", but this is a Next.js App Router project —
+ * pasting raw `<script>` tags directly would fight Next's own script
+ * loading/dedup and lose its optimizations. Used `next/script`'s
+ * `Script` component instead (the Next-recommended way to load 3rd-party
+ * scripts like gtag.js), added to an explicit `<head>` here so it still
+ * loads sitewide, on every route, exactly once — the same effective
+ * result Google's instructions ask for, just through Next's supported
+ * mechanism. `strategy="afterInteractive"` loads it right after the page
+ * becomes interactive, the strategy Next's own docs recommend for
+ * Google Analytics (early enough to catch pageviews, without blocking
+ * initial render like a plain synchronous script would).
  */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -152,6 +192,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${italiana.variable} ${montserrat.variable} h-full antialiased`}
     >
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-5B2J79PQPQ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-5B2J79PQPQ');
+          `}
+        </Script>
+      </head>
       <body className="min-h-full flex flex-col">
         <div className="relative z-10 flex flex-col pointer-events-none">
           <div className="pointer-events-auto flex flex-col">
