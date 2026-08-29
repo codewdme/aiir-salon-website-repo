@@ -4,7 +4,7 @@ import { AboutCommunitySection } from "../../components/about/about-community-se
 import { AboutCoreValuesSection } from "../../components/about/about-core-values";
 import { AboutWhyAiirSection } from "../../components/about/about-why-aiir";
 
-
+//update meta tag
 
 // UPDATE (per your instruction — add meta tags across every page):
 // description text draws on this page's own real confirmed content
